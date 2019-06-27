@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-model 实例</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>v-model 实例</h1>
+    <hr>
+    <div id="app">
+        <p>原始文本信息：{{message}}</p>
+        <h3>文本框</h3>
+        <p>v-model:<input type="text" v-model="message"></p>
+        <p>v-model.lazy:<input type="text" v-model.lazy="message"></p>
+        <p>v-model.number:<input type="text" v-model.number="message"></p>
+        <p>v-model.trim:<input type="text" v-model.trim="message"></p>
+        <hr>
+        <h3>文本域</h3>
+        <textarea v-model="message" cols="30" rows="10"></textarea>
+        <hr>
+        <h3>多选框绑定一个值</h3>
+        <label for="isTrue">{{isTrue}}</label>
+        <input type="checkbox" id="isTrue" v-model="isTrue">
+        <hr>
+        <h3>多选框绑定数组</h3>
+        <p>
+            <input type="checkbox" id="one" v-model="web_names" value="one">
+            <label for="one">one</label>
+            <input type="checkbox" id="two" v-model="web_names" value="two">
+            <label for="two">two</label>
+            <input type="checkbox" id="three" v-model="web_names" value="three">
+            <label for="three">three</label>
+        </p>
+        {{web_names}}
+        <hr>
+        <p>单选框</p>
+        <p>
+            <input type="radio" name="" id="one" v-model="sex" value="男">
+            <label for="one">男</label>
+            <input type="radio" name="" id="two" v-model="sex" value="女">
+            <label for="two">女</label>
+            <p>
+                您选择的性别是：{{sex}}
+            </p>
+        </p>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'hello',
+                isTrue:true,
+                web_names:[],
+                sex:'男'
+            }
+        })
+    </script>
+</body>
+
+</html>

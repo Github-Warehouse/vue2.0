@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>components</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>components</h1>
+    <hr>
+    <div id="app">
+        <parent></parent>
+    </div>
+    <script>
+        const child = {
+            props: ['msg'],
+            template: '<div>child</div>',
+            mounted() {
+                console.log('mounted')
+            },
+            updated() {
+                console.log('updated')
+            },
+        }
+
+        const parent = {
+            data() {
+                return {
+                    msg: 'hello'
+                }
+            },
+            template: `<div>
+            <h1>parent</h1>
+            <child :msg="msg"><child>
+            <button @click="handle">click</button>
+            </div>`,
+            handle(){
+                this.msg='word'
+            },
+            components:{
+                child
+            }
+
+        }
+
+        var vm = new Vue({
+            el: '#app',
+            components: {
+                parent
+            }
+        })
+
+    </script>
+</body>
+
+</html>
