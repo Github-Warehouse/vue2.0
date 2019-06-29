@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>slot</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>slot</h1>
+    <hr>
+    <div id="app">
+        <js>
+            <span slot="url">{{ jsData.url }}</span>
+            <span slot="netName">{{ jsData.netName }}</span>
+            <span slot="skill">{{ jsData.skill }}</span>
+        </js>
+    </div>
+
+    <template id="tep">
+        <div>
+            <p>百度地址：<slot name="url"></slot>
+            </p>
+            <p>名称：<slot name="netName"></slot>
+            </p>
+            <p>作用：<slot name="skill"></slot>
+            </p>
+        </div>
+    </template>
+
+    <script>
+        var js = {
+            template: '#tep'
+        }
+        var app = new Vue({
+            el: '#app',
+            data: {
+                jsData: {
+                    url: 'http://www.baidu.com',
+                    netName: '百度',
+                    skill: 'seach'
+                }
+            },
+            components: {
+                'js': js
+            }
+        })
+    </script>
+</body>
+
+</html>

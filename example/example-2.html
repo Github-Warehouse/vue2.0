@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>example methods demo</title>
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/js/jquery-3.1.0.min.js"></script>
+</head>
+
+<body>
+    <h1>example methods demo</h1>
+    <hr>
+    <div id="app"></div>
+    <button onclick="destroy()">destroy</button>
+    <button onclick="reload()">reload</button>
+    <button onclick="tick()">tick</button>
+
+    <script>
+
+        var js = Vue.extend({
+            template: `<p>{{ message }}</p>`,
+            data() {
+                return {
+                    message: 'hello'
+                }
+            },
+            mounted() {
+                console.log('mounted 被创建');
+
+            },
+            destroyed() {
+                console.log('destroyed 销毁之后');
+
+            },
+            updated() {
+                console.log('updated 更新之后');
+            },
+        })
+        var vm = new js().$mount('#app')
+
+        function destroy() {
+            vm.$destroy() // 销毁方法
+        }
+
+        function reload() {
+            vm.$forceUpdate() // 更新方法
+        }
+
+        function tick() {
+            vm.message = 'updated message info'
+            vm.$nextTick(function () { // 数据修改方法
+                console.log('message 更新后调用');
+
+            })
+        }
+    </script>
+</body>
+
+</html>
